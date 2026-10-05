@@ -1,0 +1,283 @@
+---
+import { conditionsData } from '../data/conditions';
+import { clinicData } from '../data/clinic';
+---
+
+<div class="appointment-form-card" id="appointmentFormContainer">
+  <div class="form-header">
+    <span class="badge badge-sage">Consultation Request</span>
+    <h3 class="form-title">Request an In-Person or Teleconsultation</h3>
+    <p class="form-sub">
+      Share a few details below. Our clinic coordinator will contact you to confirm a mutually convenient consultation time.
+    </p>
+  </div>
+
+  <form 
+    name="appointment-request" 
+    method="POST" 
+    data-netlify="true" 
+    netlify-honeypot="bot-field"
+    action="/contact?submitted=true#appointment-success"
+    id="appointmentForm"
+    class="styled-form"
+  >
+    <!-- Netlify honeypot -->
+    <p class="hidden-field" style="display:none;">
+      <label>Don’t fill this out if you're human: <input name="bot-field" /></label>
+    </p>
+    <input type="hidden" name="form-name" value="appointment-request" />
+
+    <div class="form-row grid-2">
+      <!-- Full Name -->
+      <div class="form-group">
+        <label for="patientName" class="form-label">
+          Full Name <span class="required" aria-hidden="true">*</span>
+        </label>
+        <input 
+          type="text" 
+          id="patientName" 
+          name="name" 
+          required 
+          placeholder="e.g., Ananya Sharma" 
+          class="form-input"
+          autocomplete="name"
+        />
+      </div>
+
+      <!-- Phone Number -->
+      <div class="form-group">
+        <label for="patientPhone" class="form-label">
+          Phone / WhatsApp Number <span class="required" aria-hidden="true">*</span>
+        </label>
+        <input 
+          type="tel" 
+          id="patientPhone" 
+          name="phone" 
+          required 
+          placeholder="e.g., +91 98765 43210" 
+          class="form-input"
+          autocomplete="tel"
+        />
+      </div>
+    </div>
+
+    <div class="form-row grid-2">
+      <!-- Email (Optional) -->
+      <div class="form-group">
+        <label for="patientEmail" class="form-label">
+          Email Address <span class="text-subtle">(Optional, for summary)</span>
+        </label>
+        <input 
+          type="email" 
+          id="patientEmail" 
+          name="email" 
+          placeholder="e.g., ananya@example.com" 
+          class="form-input"
+          autocomplete="email"
+        />
+      </div>
+
+      <!-- Primary Concern / Focus Area -->
+      <div class="form-group">
+        <label for="primaryConcern" class="form-label">
+          Primary Health Focus <span class="required" aria-hidden="true">*</span>
+        </label>
+        <select id="primaryConcern" name="concern" required class="form-select">
+          <option value="" disabled selected>Select your primary concern...</option>
+          {conditionsData.map((c) => (
+            <option value={c.title}>{c.title}</option>
+          ))}
+          <option value="General Integrative Health Review">General Integrative Health / Preventative</option>
+          <option value="Other Chronic Health Concern">Other Unresolved Concern</option>
+        </select>
+      </div>
+    </div>
+
+    <!-- Preferred Time & Format -->
+    <div class="form-row grid-2">
+      <div class="form-group">
+        <label for="consultationMode" class="form-label">Consultation Format</label>
+        <select id="consultationMode" name="mode" class="form-select">
+          <option value="In-Person at Basavanagudi Clinic">In-Person at Basavanagudi Clinic (Meridian Medical Centre)</option>
+          <option value="Online Video Teleconsultation">Online Video Consultation</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label for="preferredTime" class="form-label">Preferred Time Window</label>
+        <select id="preferredTime" name="preferred_time" class="form-select">
+          <option value="Tuesday Evening (5:00 PM – 8:00 PM)">Tuesday Evening (5:00 PM – 8:00 PM)</option>
+          <option value="Weekday Morning">Weekday Morning (10:00 AM – 1:00 PM)</option>
+          <option value="Weekday Evening">Weekday Evening (5:00 PM – 8:00 PM)</option>
+          <option value="Saturday Morning">Saturday Morning (10:00 AM – 2:00 PM)</option>
+        </select>
+      </div>
+    </div>
+
+    <!-- Brief Message / Details -->
+    <div class="form-group">
+      <label for="healthNotes" class="form-label">
+        Brief Description of Your Symptoms / History <span class="text-subtle">(Optional)</span>
+      </label>
+      <textarea 
+        id="healthNotes" 
+        name="notes" 
+        rows="3" 
+        placeholder="How long have you felt this way? Any past diagnoses or treatments?"
+        class="form-textarea"
+      ></textarea>
+    </div>
+
+    <!-- DPDP Act 2023 Consent Checkbox -->
+    <div class="form-group consent-box">
+      <label class="form-checkbox-label">
+        <input type="checkbox" name="dpdp_consent" required id="dpdpConsent" />
+        <span>
+          <strong>Data Protection Consent:</strong> I agree to allow Dr. Harshitha Jain's clinical team to contact me via phone, WhatsApp, or email to schedule and coordinate this consultation. I understand that my information is strictly confidential, held securely, and never shared or sold in compliance with the Digital Personal Data Protection (DPDP) Act 2023. View our <a href="/privacy-policy" target="_blank">Privacy Policy</a>.
+        </span>
+      </label>
+    </div>
+
+    <!-- Submit CTA Button -->
+    <div class="form-action">
+      <button type="submit" class="btn btn-primary btn-lg" id="submitBtn">
+        <span>Submit Appointment Request</span>
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="5" y1="12" x2="19" y2="12"></line>
+          <polyline points="12 5 19 12 12 19"></polyline>
+        </svg>
+      </button>
+
+      <p class="privacy-note">
+        🔒 Confidential clinical request. No upfront payment required.
+      </p>
+    </div>
+  </form>
+
+  <!-- Interactive Feedback Banner for Netlify or Local Testing -->
+  <div id="formSuccessMessage" class="success-banner" style="display: none;" role="alert">
+    <div class="success-icon">✓</div>
+    <div>
+      <h4>Thank you! Your consultation request has been received.</h4>
+      <p>Our clinic coordinator will review Dr. Harshitha's schedule and reach out to you shortly via phone or WhatsApp to confirm your appointment time.</p>
+    </div>
+  </div>
+</div>
+
+<style>
+  .appointment-form-card {
+    background: #ffffff;
+    border-radius: var(--radius-xl);
+    border: 1px solid var(--color-border);
+    box-shadow: var(--shadow-md);
+    padding: var(--space-6);
+  }
+
+  @media (min-width: 768px) {
+    .appointment-form-card {
+      padding: var(--space-8);
+    }
+  }
+
+  .form-header {
+    margin-bottom: var(--space-6);
+  }
+
+  .form-title {
+    margin-top: var(--space-2);
+    margin-bottom: var(--space-2);
+    font-size: 1.6rem;
+  }
+
+  .form-sub {
+    font-size: 0.98rem;
+    color: var(--color-charcoal-muted);
+  }
+
+  .styled-form {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-1);
+  }
+
+  .form-row {
+    margin-bottom: var(--space-2);
+  }
+
+  .text-subtle {
+    font-size: 0.8rem;
+    color: var(--color-slate);
+    font-weight: 400;
+  }
+
+  .consent-box {
+    background: var(--color-sand);
+    padding: var(--space-4);
+    border-radius: var(--radius-sm);
+    border: 1px solid var(--color-border-subtle);
+    margin-top: var(--space-2);
+    margin-bottom: var(--space-4);
+  }
+
+  .form-action {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--space-3);
+    margin-top: var(--space-2);
+  }
+
+  .privacy-note {
+    font-size: 0.825rem;
+    color: var(--color-slate);
+  }
+
+  .success-banner {
+    background: var(--color-success-bg);
+    border: 1px solid var(--color-brand-sage);
+    border-radius: var(--radius-md);
+    padding: var(--space-5);
+    margin-top: var(--space-4);
+    display: flex;
+    align-items: flex-start;
+    gap: var(--space-4);
+  }
+
+  .success-icon {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: var(--color-brand-sage);
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    flex-shrink: 0;
+  }
+</style>
+
+<script>
+  // Client-side confirmation handler for interactive simulation if submitted via JS
+  const form = document.getElementById('appointmentForm') as HTMLFormElement;
+  const successBox = document.getElementById('formSuccessMessage');
+
+  if (form && successBox) {
+    // Check if URL has submitted=true
+    if (window.location.search.includes('submitted=true')) {
+      form.style.display = 'none';
+      successBox.style.display = 'flex';
+    }
+
+    form.addEventListener('submit', (e) => {
+      // If we are on static host without netlify forms enabled yet, show friendly feedback
+      const isNetlify = window.location.hostname.includes('netlify') || window.location.hostname !== 'localhost';
+      if (!isNetlify) {
+        e.preventDefault();
+        form.style.display = 'none';
+        successBox.style.display = 'flex';
+        successBox.scrollIntoView({ behavior: 'smooth' });
+      }
+    });
+  }
+</script>

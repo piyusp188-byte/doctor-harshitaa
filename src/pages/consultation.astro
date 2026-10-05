@@ -1,0 +1,346 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import TrustStrip from '../components/TrustStrip.astro';
+import AppointmentForm from '../components/AppointmentForm.astro';
+import { clinicData } from '../data/clinic';
+---
+
+<BaseLayout
+  title="How a Consultation Works | Dr. Harshitha Jain, Bengaluru"
+  description="Step-by-step guide to what happens before, during, and after your functional medicine consultation with Dr. Harshitha Jain at Meridian Medical Centre, Basavanagudi."
+>
+  <section class="page-hero">
+    <div class="container text-center">
+      <span class="section-eyebrow">Patient Experience</span>
+      <h1 class="page-title">How a Consultation Works</h1>
+      <p class="lead" style="max-width: 720px; margin: var(--space-3) auto 0;">
+        From your first enquiry to your personalized healing roadmap: a transparent, step-by-step guide to your clinical experience.
+      </p>
+    </div>
+  </section>
+
+  <TrustStrip />
+
+  <!-- Step-by-Step Timeline -->
+  <section class="section">
+    <div class="container">
+      <div class="timeline-container">
+        <!-- Step 1 -->
+        <div class="timeline-item">
+          <div class="timeline-marker">1</div>
+          <div class="card timeline-card">
+            <span class="badge badge-teal">Step 1 — Initial Contact</span>
+            <h3>Appointment Request & Pre-Visit Intake</h3>
+            <p>
+              Submit your appointment request using our secure form or via WhatsApp. Our clinic coordinator reaches out within 24 hours to confirm your preferred consultation day and time.
+            </p>
+            <div class="timeline-sub-box">
+              <strong>What you'll receive:</strong>
+              <p>A brief pre-consultation health questionnaire to help map your symptom history, dietary patterns, and past lab investigations before you arrive.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Step 2 -->
+        <div class="timeline-item">
+          <div class="timeline-marker">2</div>
+          <div class="card timeline-card">
+            <span class="badge badge-teal">Step 2 — In the Clinic</span>
+            <h3>Comprehensive 45–60 Minute Initial Consultation</h3>
+            <p>
+              You meet Dr. Harshitha in an unhurried, comfortable clinical environment at Meridian Medical Centre, Basavanagudi (or via encrypted video call).
+            </p>
+            <ul class="styled-list">
+              <li>Detailed discussion of your complete health timeline from early years to the present</li>
+              <li>Careful review of previous blood tests, thyroid panels, imaging, or specialist notes</li>
+              <li>Exploring dietary habits, digestive transit, sleep quality, and nervous system stress load</li>
+              <li>Focused physical examination where clinically indicated</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Step 3 -->
+        <div class="timeline-item">
+          <div class="timeline-marker">3</div>
+          <div class="card timeline-card">
+            <span class="badge badge-teal">Step 3 — Diagnostics</span>
+            <h3>Targeted Root-Cause Laboratory Investigation</h3>
+            <p>
+              If further clarity is needed, Dr. Harshitha recommends specific biomarker assessments rather than generic testing menus.
+            </p>
+            <p class="text-sm">
+              This may include complete thyroid panels (Free T3, Free T4, Reverse T3, Anti-TPO), micronutrient status (Ferritin, Vitamin D3, B12, Zinc), metabolic insulin markers, or comprehensive digestive stool analysis.
+            </p>
+          </div>
+        </div>
+
+        <!-- Step 4 -->
+        <div class="timeline-item">
+          <div class="timeline-marker">4</div>
+          <div class="card timeline-card">
+            <span class="badge badge-teal">Step 4 — Action Plan</span>
+            <h3>Your Personalized Health & Nutrition Roadmap</h3>
+            <p>
+              You receive an actionable, structured plan designed to fit your realistic lifestyle and work demands in Bengaluru:
+            </p>
+            <ul class="styled-list">
+              <li><strong>Therapeutic Nutrition:</strong> Targeted food recommendations and trigger eliminations without extreme deprivation</li>
+              <li><strong>Lifestyle & Circadian Pacing:</strong> Sleep architecture, morning light exposure, and nervous system down-regulation</li>
+              <li><strong>Nutraceutical Support:</strong> Evidence-backed, pharmaceutical-grade vitamins, botanicals, or minerals with clear dosing</li>
+              <li><strong>Conventional Medical Care:</strong> Integration with any prescription therapies or ongoing specialist care</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Step 5 -->
+        <div class="timeline-item">
+          <div class="timeline-marker">5</div>
+          <div class="card timeline-card">
+            <span class="badge badge-teal">Step 5 — Ongoing Partnership</span>
+            <h3>Structured Review & Long-Term Optimization</h3>
+            <p>
+              Healing chronic imbalances requires thoughtful calibration. Follow-up reviews (25–30 minutes) occur at 4–6 week intervals to assess symptomatic improvement, retest pertinent biomarkers, and adjust your plan as your vitality rebuilds.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Preparation Guide & Fees Box -->
+  <section class="section prep-section">
+    <div class="container">
+      <div class="grid-2 prep-grid">
+        <!-- Card 1: What to Bring -->
+        <div class="card prep-card">
+          <div class="prep-icon">📋</div>
+          <h3>What to Bring to Your First Visit</h3>
+          <ul class="prep-list">
+            <li><strong>Past Lab Reports:</strong> All blood tests, thyroid reports, and scans from the last 1–2 years</li>
+            <li><strong>Current Medications:</strong> Exact names and dosages of all prescriptions, over-the-counter drugs, and supplements</li>
+            <li><strong>Timeline Notes:</strong> A brief bullet list of when your symptoms first emerged and any triggers you noticed</li>
+            <li><strong>Questions:</strong> Any specific health questions or treatment preferences you wish to discuss</li>
+          </ul>
+        </div>
+
+        <!-- Card 2: Fee Structure -->
+        <div class="card prep-card fee-card">
+          <div class="prep-icon">💳</div>
+          <h3>Consultation Fees & Policies</h3>
+          <p class="fee-intro">
+            Dr. Harshitha believes in transparent, upfront medical care without surprise costs.
+          </p>
+
+          <div class="fee-placeholder-box">
+            <p class="fee-detail">
+              <strong>Initial Consultation:</strong> 45–60 minutes in-depth clinical evaluation.<br />
+              <strong>Follow-Up Consultation:</strong> 25–30 minutes review & plan adjustments.
+            </p>
+            <p class="fee-note text-sm">
+              Consultation fees are communicated transparently by our clinic coordinator when scheduling your appointment. Please enquire directly via our booking form or WhatsApp for current consultation rates. Payment modes accepted at the clinic include UPI, cards, and cash.
+            </p>
+          </div>
+
+          <div class="emergency-reminder">
+            ⚠️ <strong>Emergency Notice:</strong> This clinic does not provide 24/7 acute trauma or emergency room services. For acute emergencies, call 112 or visit your nearest hospital casualty.
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Booking Form Anchor Section -->
+  <section class="section" id="book-consultation">
+    <div class="container" style="max-width: 840px;">
+      <AppointmentForm />
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .page-hero {
+    background: radial-gradient(circle at 50% 50%, rgba(220, 238, 228, 0.4), transparent 60%);
+    padding: var(--space-8) 0 var(--space-7);
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .page-title {
+    margin-top: var(--space-2);
+  }
+
+  .timeline-container {
+    max-width: 820px;
+    margin: 0 auto;
+    position: relative;
+    padding-left: 20px;
+  }
+
+  @media (min-width: 768px) {
+    .timeline-container {
+      padding-left: 40px;
+    }
+  }
+
+  .timeline-container::before {
+    content: '';
+    position: absolute;
+    top: 20px;
+    bottom: 20px;
+    left: 28px;
+    width: 2px;
+    background: var(--color-border);
+  }
+
+  @media (min-width: 768px) {
+    .timeline-container::before {
+      left: 48px;
+    }
+  }
+
+  .timeline-item {
+    position: relative;
+    margin-bottom: var(--space-7);
+  }
+
+  .timeline-marker {
+    position: absolute;
+    left: -20px;
+    top: 20px;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: var(--color-brand-sage);
+    color: #ffffff;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 0 0 4px var(--color-sand);
+    z-index: 2;
+  }
+
+  @media (min-width: 768px) {
+    .timeline-marker {
+      left: -28px;
+      width: 40px;
+      height: 40px;
+    }
+  }
+
+  .timeline-card {
+    background: #ffffff;
+    margin-left: 24px;
+    padding: var(--space-6);
+  }
+
+  @media (min-width: 768px) {
+    .timeline-card {
+      margin-left: 36px;
+    }
+  }
+
+  .timeline-card h3 {
+    margin: var(--space-2) 0 var(--space-3);
+    font-size: 1.35rem;
+  }
+
+  .timeline-sub-box {
+    background: var(--color-sand);
+    border: 1px solid var(--color-border-subtle);
+    border-radius: var(--radius-sm);
+    padding: var(--space-3) var(--space-4);
+    margin-top: var(--space-4);
+    font-size: 0.9rem;
+  }
+
+  .styled-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-top: var(--space-3);
+    font-size: 0.95rem;
+  }
+
+  .styled-list li {
+    position: relative;
+    padding-left: 18px;
+  }
+
+  .styled-list li::before {
+    content: '✓';
+    position: absolute;
+    left: 0;
+    color: var(--color-brand-sage);
+    font-weight: bold;
+  }
+
+  /* Prep Section */
+  .prep-section {
+    background: rgba(255, 255, 255, 0.6);
+  }
+
+  .prep-card {
+    background: #ffffff;
+    padding: var(--space-6);
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .prep-icon {
+    font-size: 2rem;
+    margin-bottom: var(--space-3);
+  }
+
+  .prep-card h3 {
+    margin-bottom: var(--space-3);
+    font-size: 1.3rem;
+  }
+
+  .prep-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    font-size: 0.92rem;
+  }
+
+  .prep-list li {
+    padding-left: 16px;
+    position: relative;
+  }
+
+  .prep-list li::before {
+    content: '•';
+    position: absolute;
+    left: 0;
+    color: var(--color-brand-sage);
+    font-size: 1.2rem;
+    line-height: 1;
+  }
+
+  .fee-placeholder-box {
+    background: var(--color-sand);
+    border: 1px solid var(--color-border-subtle);
+    border-radius: var(--radius-sm);
+    padding: var(--space-4);
+    margin: var(--space-3) 0 var(--space-4);
+    font-size: 0.92rem;
+  }
+
+  .fee-detail {
+    margin-top: var(--space-2);
+    line-height: 1.6;
+  }
+
+  .emergency-reminder {
+    background: #fff8eb;
+    border: 1px solid #ffd88a;
+    color: #92400e;
+    padding: var(--space-3) var(--space-4);
+    border-radius: var(--radius-sm);
+    font-size: 0.825rem;
+    margin-top: auto;
+  }
+</style>

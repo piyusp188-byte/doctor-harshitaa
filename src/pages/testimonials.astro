@@ -1,0 +1,241 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import TrustStrip from '../components/TrustStrip.astro';
+import { reviewThemes } from '../data/testimonials';
+import { clinicData } from '../data/clinic';
+---
+
+<BaseLayout
+  title="Patient Reviews & Experiences | Dr. Harshitha Jain, Bengaluru"
+  description="Read verified patient themes from Google reviews for Dr. Harshitha Jain, Functional Medicine Physician in Basavanagudi, Bengaluru (5.0 rating from 6 reviews)."
+>
+  <section class="page-hero">
+    <div class="container text-center">
+      <span class="section-eyebrow">Patient Feedback</span>
+      <h1 class="page-title">Patient Stories & Review Themes</h1>
+      <p class="lead" style="max-width: 720px; margin: var(--space-3) auto 0;">
+        Grounded in trust, empathy, and scientific precision. Read common themes shared by patients on our verified Google Business Profile.
+      </p>
+    </div>
+  </section>
+
+  <TrustStrip />
+
+  <!-- Ethical Compliance Notice Banner -->
+  <section class="section" style="padding-bottom: 0;">
+    <div class="container">
+      <div class="card nmc-compliance-card">
+        <div class="compliance-badge">⚖️ Ethical Healthcare Communication Note</div>
+        <p class="text-sm">
+          In strict compliance with <strong>National Medical Commission (NMC) Professional Conduct Regulations</strong>, Indian physicians are prohibited from making commercial endorsements, claiming superlative superiority ("the best doctor"), or publishing outcome guarantees. The summaries below represent <em>paraphrased thematic syntheses</em> of public reviews voluntarily left on our Google Business Profile. Verbatim quotes and reviewer identities are preserved solely on the original third-party platform.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Review Themes Grid -->
+  <section class="section">
+    <div class="container">
+      <!-- Google Rating Header Card -->
+      <div class="card rating-summary-card">
+        <div class="rating-large-display">
+          <span class="score-number">5.0</span>
+          <div class="score-stars">★★★★★</div>
+          <span class="score-count">6 Verified Google Reviews</span>
+        </div>
+        <div class="rating-summary-text">
+          <h3>100% Five-Star Patient Satisfaction</h3>
+          <p>
+            Dr. Harshitha Jain reviews and thoughtfully responds to every single patient on Google. Patients frequently speak to the calming nature of the clinic, unhurried listening, and thorough root-cause investigations.
+          </p>
+          <a 
+            href={clinicData.googleMapsShareUrl} 
+            target="_blank" 
+            rel="noopener noreferrer" 
+            class="btn btn-secondary"
+          >
+            Verify Directly on Google Maps &rarr;
+          </a>
+        </div>
+      </div>
+
+      <!-- 6 Themes Grid -->
+      <div class="grid-2 themes-grid" style="margin-top: var(--space-7);">
+        {reviewThemes.map((theme) => (
+          <div class="card theme-card">
+            <div class="theme-top">
+              <span class="theme-stars">★★★★★</span>
+              <span class="badge badge-sage">{theme.focusArea}</span>
+            </div>
+            <h3 class="theme-title">{theme.themeTitle}</h3>
+            <blockquote class="theme-experience">
+              “{theme.paraphrasedExperience}”
+            </blockquote>
+            <div class="theme-source-note">
+              <span>{theme.sourceNote}</span>
+            </div>
+          </div>
+        ))}
+      </div>
+
+      <!-- Action Card: Leave a Review -->
+      <div class="card review-cta-card text-center" style="margin-top: var(--space-8);">
+        <h3>Are You an Existing Patient?</h3>
+        <p class="lead" style="max-width: 600px; margin: var(--space-3) auto var(--space-5);">
+          Your experience helps other individuals in Bengaluru discover compassionate, root-cause functional medicine.
+        </p>
+        <a 
+          href={clinicData.googleMapsShareUrl} 
+          target="_blank" 
+          rel="noopener noreferrer" 
+          class="btn btn-primary btn-lg"
+        >
+          Leave a Review on Google &rarr;
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Booking CTA -->
+  <section class="section text-center" style="background: #ffffff; border-top: 1px solid var(--color-border);">
+    <div class="container">
+      <h2>Experience Compassionate, Root-Cause Care</h2>
+      <p class="lead" style="max-width: 600px; margin: var(--space-3) auto var(--space-6);">
+        Take the first step toward understanding your body's signals with Dr. Harshitha Jain.
+      </p>
+      <a href="/contact#book" class="btn btn-primary btn-lg">Request an Appointment &rarr;</a>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .page-hero {
+    background: radial-gradient(circle at 50% 50%, rgba(220, 238, 228, 0.4), transparent 60%);
+    padding: var(--space-8) 0 var(--space-7);
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .page-title {
+    margin-top: var(--space-2);
+  }
+
+  .nmc-compliance-card {
+    background: var(--color-sand);
+    border: 1px solid var(--color-border-subtle);
+    padding: var(--space-4) var(--space-5);
+  }
+
+  .compliance-badge {
+    font-weight: 600;
+    font-size: 0.85rem;
+    color: var(--color-charcoal);
+    margin-bottom: 6px;
+  }
+
+  .rating-summary-card {
+    background: #ffffff;
+    padding: var(--space-6);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-5);
+    align-items: center;
+    text-align: center;
+  }
+
+  @media (min-width: 768px) {
+    .rating-summary-card {
+      flex-direction: row;
+      text-align: left;
+      padding: var(--space-7);
+    }
+  }
+
+  .rating-large-display {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: var(--color-sand);
+    padding: var(--space-5);
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--color-border-subtle);
+    min-width: 200px;
+    flex-shrink: 0;
+  }
+
+  .score-number {
+    font-family: var(--font-serif);
+    font-size: 3.5rem;
+    font-weight: 700;
+    color: var(--color-charcoal);
+    line-height: 1;
+  }
+
+  .score-stars {
+    color: #f59e0b;
+    font-size: 1.3rem;
+    letter-spacing: 2px;
+    margin: 6px 0;
+  }
+
+  .score-count {
+    font-size: 0.8rem;
+    color: var(--color-slate);
+    font-weight: 500;
+  }
+
+  .rating-summary-text h3 {
+    margin-bottom: var(--space-2);
+    font-size: 1.4rem;
+  }
+
+  .rating-summary-text p {
+    margin-bottom: var(--space-4);
+    font-size: 0.98rem;
+  }
+
+  .theme-card {
+    background: #ffffff;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: var(--space-6);
+  }
+
+  .theme-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: var(--space-3);
+  }
+
+  .theme-stars {
+    color: #f59e0b;
+    letter-spacing: 2px;
+  }
+
+  .theme-title {
+    font-size: 1.2rem;
+    margin-bottom: var(--space-3);
+  }
+
+  .theme-experience {
+    font-style: italic;
+    color: var(--color-charcoal-muted);
+    font-size: 0.95rem;
+    line-height: 1.65;
+    margin-bottom: var(--space-4);
+    flex: 1;
+  }
+
+  .theme-source-note {
+    border-top: 1px solid rgba(152, 185, 168, 0.2);
+    padding-top: var(--space-2);
+    font-size: 0.75rem;
+    color: var(--color-slate);
+  }
+
+  .review-cta-card {
+    background: #ffffff;
+    padding: var(--space-7);
+  }
+</style>

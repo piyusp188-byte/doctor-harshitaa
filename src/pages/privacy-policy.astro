@@ -1,0 +1,125 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { clinicData } from '../data/clinic';
+---
+
+<BaseLayout
+  title="Privacy Policy | Dr. Harshitha Jain, Functional Medicine Physician"
+  description="Privacy policy and data protection disclosures under India's Digital Personal Data Protection (DPDP) Act 2023 for Dr. Harshitha Jain's medical practice in Bengaluru."
+>
+  <section class="page-hero">
+    <div class="container text-center">
+      <span class="section-eyebrow">Regulatory Compliance</span>
+      <h1 class="page-title">Privacy Policy</h1>
+      <p class="lead" style="max-width: 700px; margin: var(--space-3) auto 0;">
+        Compliance with India's Digital Personal Data Protection (DPDP) Act 2023 and medical confidentiality ethics.
+      </p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container" style="max-width: 820px;">
+      <div class="card legal-card">
+        <p class="last-updated">Last Updated: October 2026</p>
+
+        <div class="legal-body">
+          <h3>1. Commitment to Clinical Confidentiality</h3>
+          <p>
+            At the clinical practice of <strong>Dr. Harshitha Jain</strong> (operating at Meridian Medical Centre, Basavanagudi, Bengaluru), patient trust and privacy are paramount. We handle your personal and health-related information with the highest standards of professional ethics, medical confidentiality, and strict adherence to India’s <strong>Digital Personal Data Protection (DPDP) Act 2023</strong>.
+          </p>
+
+          <h3>2. What Data We Collect & Why</h3>
+          <p>When you interact with our website or submit an appointment request, we collect only minimal, necessary information:</p>
+          <ul>
+            <li><strong>Contact Identifiers:</strong> Your full name, telephone / WhatsApp number, and email address (to communicate and confirm appointment times).</li>
+            <li><strong>Health Concerns:</strong> Brief descriptions of the symptom categories or reasons for consultation you voluntarily choose to submit.</li>
+            <li><strong>Technical Analytics:</strong> Aggregated, privacy-respecting pageview metrics (no invasive tracking cookies, no cross-site profiling).</li>
+          </ul>
+
+          <h3>3. Lawful Basis & Consent</h3>
+          <p>
+            Data submitted via our appointment forms is processed on the lawful basis of your explicit consent (granted via the mandatory consent checkbox) solely for the purpose of clinical scheduling and care coordination.
+          </p>
+
+          <h3>4. How Your Data is Used & Protected</h3>
+          <ul>
+            <li>Your information is used strictly by Dr. Harshitha Jain and her direct clinical administrative staff.</li>
+            <li><strong>Zero Commercial Sharing:</strong> We do <em>not</em> sell, rent, monetize, or trade your personal or health data to pharmaceutical companies, marketers, or third parties under any circumstances.</li>
+            <li>Form transmissions utilize industry-standard 256-bit TLS/SSL encryption.</li>
+          </ul>
+
+          <h3>5. Data Retention Period</h3>
+          <p>
+            Appointment enquiry records that do not transition into clinical consultations are automatically purged within 12 months. When a formal doctor-patient relationship is established, clinical medical records are preserved in accordance with medical council retention mandates.
+          </p>
+
+          <h3>6. Your Rights Under DPDP Act 2023</h3>
+          <p>As a Data Principal in India, you are entitled to:</p>
+          <ul>
+            <li><strong>Right to Access:</strong> Request a summary of the personal data held about you.</li>
+            <li><strong>Right to Correction & Erasure:</strong> Request the correction of inaccuracies or deletion of your enquiry data.</li>
+            <li><strong>Right of Grievance Redressal:</strong> Submit any data privacy concerns directly to our clinic coordinator.</li>
+          </ul>
+
+          <h3>7. Contact for Data Privacy Matters</h3>
+          <p>
+            For any questions, consent withdrawals, or data access requests, please contact:<br />
+            <strong>Clinic Coordinator, Dr. Harshitha Jain Practice</strong><br />
+            Meridian Medical Centre, First Floor, 3/4, Armugam Circle, Basavanagudi, Bengaluru 560004<br />
+            Email: <code>{clinicData.email.display}</code>
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .page-hero {
+    background: radial-gradient(circle at 50% 50%, rgba(220, 238, 228, 0.4), transparent 60%);
+    padding: var(--space-8) 0 var(--space-7);
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .page-title {
+    margin-top: var(--space-2);
+  }
+
+  .legal-card {
+    background: #ffffff;
+    padding: var(--space-7);
+  }
+
+  .last-updated {
+    font-size: 0.85rem;
+    color: var(--color-slate);
+    margin-bottom: var(--space-5);
+    font-style: italic;
+  }
+
+  .legal-body h3 {
+    margin-top: var(--space-6);
+    margin-bottom: var(--space-2);
+    font-size: 1.25rem;
+    color: var(--color-brand-sage-dark);
+  }
+
+  .legal-body p {
+    margin-bottom: var(--space-3);
+    font-size: 1rem;
+    line-height: 1.7;
+  }
+
+  .legal-body ul {
+    margin-left: var(--space-5);
+    margin-bottom: var(--space-4);
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .legal-body li {
+    font-size: 0.98rem;
+    color: var(--color-charcoal-muted);
+  }
+</style>

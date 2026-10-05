@@ -1,0 +1,383 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import TrustStrip from '../../components/TrustStrip.astro';
+import AppointmentForm from '../../components/AppointmentForm.astro';
+import { conditionsData, type Condition } from '../../data/conditions';
+
+export function getStaticPaths() {
+  return conditionsData.map((condition) => ({
+    params: { slug: condition.slug },
+    props: { condition }
+  }));
+}
+
+interface Props {
+  condition: Condition;
+}
+
+const { condition } = Astro.props;
+const otherConditions = conditionsData.filter((c) => c.slug !== condition.slug);
+---
+
+<BaseLayout
+  title={`${condition.title} | Dr. Harshitha Jain, Functional Medicine Physician`}
+  description={`Evidence-based functional medicine approach to ${condition.title.toLowerCase()} in Bengaluru. Addressing root drivers beyond symptom suppression.`}
+>
+  <!-- Breadcrumb & Header -->
+  <section class="page-hero">
+    <div class="container">
+      <nav class="breadcrumb-nav" aria-label="Breadcrumb">
+        <ol class="breadcrumb-list">
+          <li><a href="/">Home</a></li>
+          <li><span class="sep">/</span></li>
+          <li><a href="/conditions">Conditions</a></li>
+          <li><span class="sep">/</span></li>
+          <li aria-current="page"><strong>{condition.title}</strong></li>
+        </ol>
+      </nav>
+
+      <div class="hero-condition-header">
+        <span class="badge badge-teal">{condition.badge}</span>
+        <h1 class="page-title">{condition.title}</h1>
+        <p class="lead" style="max-width: 720px; margin-top: var(--space-3);">
+          {condition.shortDescription}
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <TrustStrip />
+
+  <!-- Main Condition Content Layout -->
+  <section class="section">
+    <div class="container">
+      <div class="condition-layout">
+        <!-- Main Content -->
+        <article class="condition-main-content">
+          <div class="card content-block">
+            <span class="section-eyebrow">Clinical Understanding</span>
+            <h2>Understanding the Root Causes of {condition.title}</h2>
+            <p class="overview-body">{condition.overview}</p>
+          </div>
+
+          <div class="card content-block">
+            <span class="section-eyebrow">Signs & Signals</span>
+            <h3>Common Symptoms Patients Experience</h3>
+            <p>You may be experiencing one or a cluster of the following symptoms:</p>
+            <ul class="styled-symptom-list">
+              {condition.commonSymptoms.map((symptom) => (
+                <li>
+                  <div class="bullet-dot">•</div>
+                  <span>{symptom}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          <div class="card content-block">
+            <span class="section-eyebrow">Our Methodology</span>
+            <h3>How Dr. Harshitha Approaches {condition.title}</h3>
+            <p>
+              Rather than prescribing standardized, single-target medications, functional medicine analyzes the underlying biological drivers:
+            </p>
+            <div class="approach-cards-list">
+              {condition.rootCauseApproach.map((step, i) => (
+                <div class="approach-step-card">
+                  <span class="step-num">0{i + 1}</span>
+                  <div class="step-desc">
+                    <p>{step}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <div class="card content-block">
+            <span class="section-eyebrow">Consultation Expectations</span>
+            <h3>What to Expect in Your Consultation</h3>
+            <p>{condition.whatToExpect}</p>
+            <div class="consultation-highlights">
+              <div class="highlight-item">
+                <strong>45–60 Minutes</strong>
+                <span>Dedicated initial evaluation</span>
+              </div>
+              <div class="highlight-item">
+                <strong>Full Lab Review</strong>
+                <span>Past 1–2 years of bloodwork</span>
+              </div>
+              <div class="highlight-item">
+                <strong>Personalized Strategy</strong>
+                <span>Diet, lifestyle & therapy roadmap</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Embedded Appointment Form on Condition Page -->
+          <div class="condition-booking-block" id="book-condition">
+            <AppointmentForm />
+          </div>
+        </article>
+
+        <!-- Sidebar with Related Conditions & Quick Info -->
+        <aside class="condition-sidebar">
+          <div class="card sidebar-card clinic-card">
+            <h4>Consult Dr. Harshitha Jain</h4>
+            <p class="text-sm">MBBS (Gold Medalist) • Functional Medicine Physician</p>
+            <div class="sidebar-location">
+              <p>📍 Meridian Medical Centre, First Floor, Basavanagudi, Bengaluru</p>
+              <p>⏰ Opens 5:00 PM Tuesday (By Appointment)</p>
+            </div>
+            <a href="#book-condition" class="btn btn-primary" style="width: 100%;">
+              Book for {condition.badge}
+            </a>
+          </div>
+
+          <div class="card sidebar-card">
+            <h4>Other Focus Areas</h4>
+            <ul class="other-conditions-list">
+              {otherConditions.map((other) => (
+                <li>
+                  <a href={`/conditions/${other.slug}`} class="other-condition-link">
+                    <span class="other-title">{other.title}</span>
+                    <span class="other-badge">{other.badge}</span>
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          <div class="card sidebar-card disclaimer-card">
+            <h5>Medical Notice</h5>
+            <p class="text-xs">
+              This guide is for informational purposes and does not replace medical consultation. No guaranteed cures or outcomes are promised, in accordance with NMC regulations.
+            </p>
+          </div>
+        </aside>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .page-hero {
+    background: radial-gradient(circle at 50% 50%, rgba(220, 238, 228, 0.4), transparent 60%);
+    padding: var(--space-7) 0 var(--space-6);
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .breadcrumb-nav {
+    margin-bottom: var(--space-4);
+  }
+
+  .breadcrumb-list {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--space-2);
+    font-size: 0.85rem;
+  }
+
+  .breadcrumb-list a {
+    color: var(--color-slate);
+  }
+
+  .breadcrumb-list a:hover {
+    color: var(--color-brand-sage-dark);
+  }
+
+  .sep {
+    color: var(--color-border);
+  }
+
+  .condition-layout {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-8);
+  }
+
+  @media (min-width: 1024px) {
+    .condition-layout {
+      grid-template-columns: 1fr 340px;
+    }
+  }
+
+  .condition-main-content {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-6);
+  }
+
+  .content-block {
+    background: #ffffff;
+    border-radius: var(--radius-lg);
+    padding: var(--space-6);
+  }
+
+  @media (min-width: 768px) {
+    .content-block {
+      padding: var(--space-7);
+    }
+  }
+
+  .content-block h2, .content-block h3 {
+    margin-top: var(--space-2);
+    margin-bottom: var(--space-4);
+  }
+
+  .overview-body {
+    font-size: 1.05rem;
+    line-height: 1.75;
+  }
+
+  .styled-symptom-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+    margin-top: var(--space-4);
+  }
+
+  .styled-symptom-list li {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--space-3);
+    font-size: 0.98rem;
+  }
+
+  .bullet-dot {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: var(--color-brand-sage-light);
+    color: var(--color-brand-sage-dark);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+
+  .approach-cards-list {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+    margin-top: var(--space-4);
+  }
+
+  .approach-step-card {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--space-4);
+    background: var(--color-sand);
+    border: 1px solid var(--color-border-subtle);
+    border-radius: var(--radius-md);
+    padding: var(--space-4);
+  }
+
+  .step-num {
+    font-family: var(--font-serif);
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--color-brand-sage);
+  }
+
+  .consultation-highlights {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: var(--space-4);
+    margin-top: var(--space-5);
+  }
+
+  .highlight-item {
+    background: var(--color-sand);
+    border: 1px solid var(--color-border-subtle);
+    border-radius: var(--radius-sm);
+    padding: var(--space-4);
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .highlight-item strong {
+    font-family: var(--font-serif);
+    color: var(--color-brand-sage-dark);
+    font-size: 1.15rem;
+  }
+
+  .highlight-item span {
+    font-size: 0.825rem;
+    color: var(--color-charcoal-muted);
+  }
+
+  /* Sidebar */
+  .condition-sidebar {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-6);
+  }
+
+  .sidebar-card {
+    background: #ffffff;
+    border-radius: var(--radius-lg);
+    padding: var(--space-5);
+  }
+
+  .clinic-card h4 {
+    margin-bottom: 2px;
+  }
+
+  .sidebar-location {
+    margin: var(--space-4) 0;
+    font-size: 0.85rem;
+    color: var(--color-charcoal-muted);
+    line-height: 1.5;
+  }
+
+  .other-conditions-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+    margin-top: var(--space-4);
+  }
+
+  .other-condition-link {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    padding: 8px 10px;
+    border-radius: var(--radius-sm);
+    background: var(--color-sand);
+    text-decoration: none;
+    transition: background var(--transition-fast);
+  }
+
+  .other-condition-link:hover {
+    background: var(--color-brand-sage-light);
+  }
+
+  .other-title {
+    font-weight: 500;
+    font-size: 0.88rem;
+    color: var(--color-charcoal);
+  }
+
+  .other-badge {
+    font-size: 0.72rem;
+    color: var(--color-brand-sage-dark);
+  }
+
+  .disclaimer-card {
+    background: rgba(0, 0, 0, 0.02);
+    border: 1px dashed var(--color-border);
+  }
+
+  .text-xs {
+    font-size: 0.75rem;
+    color: var(--color-slate);
+    line-height: 1.5;
+    margin-top: 4px;
+  }
+</style>

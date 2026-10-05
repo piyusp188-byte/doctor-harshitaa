@@ -1,0 +1,146 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+  title="Terms of Use & Medical Disclaimer | Dr. Harshitha Jain, Bengaluru"
+  description="Terms of use, regulatory compliance notices, and medical disclaimer for the practice website of Dr. Harshitha Jain, MBBS (Gold Medalist) in Bengaluru."
+>
+  <section class="page-hero">
+    <div class="container text-center">
+      <span class="section-eyebrow">Legal & Clinical Notices</span>
+      <h1 class="page-title">Terms of Use & Medical Disclaimer</h1>
+      <p class="lead" style="max-width: 720px; margin: var(--space-3) auto 0;">
+        Important legal conditions and medical guidelines regarding information presented on this website.
+      </p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container" style="max-width: 820px;">
+      <div class="card legal-card">
+        <!-- Emergency Alert Banner -->
+        <div class="emergency-alert-card">
+          <div class="alert-icon">⚠️</div>
+          <div>
+            <h4>Emergency Medical Notice</h4>
+            <p>
+              This website is <strong>not</strong> equipped to triage or handle medical emergencies. If you are experiencing sudden chest pain, breathing difficulties, acute severe abdominal pain, sudden numbness, or any life-threatening symptoms, immediately telephone <strong>112</strong> (India Emergency Services) or visit the casualty department of the nearest hospital.
+            </p>
+          </div>
+        </div>
+
+        <div class="legal-body">
+          <h3>1. Educational Purpose Only (No Doctor-Patient Relationship)</h3>
+          <p>
+            All content, including articles, condition overviews, FAQs, video descriptions, and medical philosophies presented on this website, is strictly for general informational and educational purposes. Reading this website, filling out an appointment request form, or exchanging preliminary administrative messages does <em>not</em> establish a formal physician-patient relationship with Dr. Harshitha Jain.
+          </p>
+          <p>
+            A formal doctor-patient relationship is established only upon the completion of an in-person or officially scheduled clinical consultation following standard medical documentation.
+          </p>
+
+          <h3>2. No Substitute for Individual Medical Diagnosis</h3>
+          <p>
+            The information contained herein must not be used as a self-diagnosis tool or as a replacement for clinical consultation, diagnostic testing, or prescribed medical therapy from a registered physician. Always seek the advice of your doctor or another qualified healthcare provider with any questions you have regarding a medical symptom or condition.
+          </p>
+
+          <h3>3. NMC Ethical Advertising & Code of Conduct Compliance</h3>
+          <p>
+            In strict observance of the <strong>National Medical Commission (NMC) Professional Conduct Regulations</strong>:
+          </p>
+          <ul>
+            <li>No statements on this website are intended to guarantee specific health cures, symptom reversals, or miraculous clinical results.</li>
+            <li>No comparative or superlative marketing claims (such as "best doctor" or "guaranteed cure") are made on this website.</li>
+            <li>Paraphrased review themes are provided solely as educational summaries of public Google Business feedback and are not paid endorsements.</li>
+          </ul>
+
+          <h3>4. Diagnostic & Therapeutic Approach</h3>
+          <p>
+            Dr. Harshitha Jain is a registered MBBS physician practicing functional and integrative medicine. Recommendations involving nutrition, dietary supplements, lifestyle pacing, and biomarker testing are personalized to individual physiology and discussed during formal consultations.
+          </p>
+
+          <h3>5. Intellectual Property</h3>
+          <p>
+            All text, branding, graphics, and layout on this website are the intellectual property of Dr. Harshitha Jain and protected under Indian copyright law. Reproduction without explicit written permission is prohibited.
+          </p>
+
+          <h3>6. Jurisdiction</h3>
+          <p>
+            These terms and any disputes relating to the use of this website are governed by the laws of India and subject to the exclusive jurisdiction of the courts in Bengaluru, Karnataka.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .page-hero {
+    background: radial-gradient(circle at 50% 50%, rgba(220, 238, 228, 0.4), transparent 60%);
+    padding: var(--space-8) 0 var(--space-7);
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .page-title {
+    margin-top: var(--space-2);
+  }
+
+  .legal-card {
+    background: #ffffff;
+    padding: var(--space-7);
+  }
+
+  .emergency-alert-card {
+    background: #fff8eb;
+    border: 1px solid #f59e0b;
+    border-radius: var(--radius-md);
+    padding: var(--space-5);
+    display: flex;
+    gap: var(--space-4);
+    align-items: flex-start;
+    margin-bottom: var(--space-6);
+  }
+
+  .alert-icon {
+    font-size: 1.5rem;
+    flex-shrink: 0;
+  }
+
+  .emergency-alert-card h4 {
+    color: #92400e;
+    margin-bottom: 4px;
+    font-size: 1.15rem;
+  }
+
+  .emergency-alert-card p {
+    font-size: 0.95rem;
+    color: #78350f;
+    line-height: 1.6;
+  }
+
+  .legal-body h3 {
+    margin-top: var(--space-6);
+    margin-bottom: var(--space-2);
+    font-size: 1.25rem;
+    color: var(--color-brand-sage-dark);
+  }
+
+  .legal-body p {
+    margin-bottom: var(--space-3);
+    font-size: 1rem;
+    line-height: 1.7;
+  }
+
+  .legal-body ul {
+    margin-left: var(--space-5);
+    margin-bottom: var(--space-4);
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .legal-body li {
+    font-size: 0.98rem;
+    color: var(--color-charcoal-muted);
+  }
+</style>

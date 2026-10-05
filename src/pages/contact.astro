@@ -1,0 +1,307 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import TrustStrip from '../components/TrustStrip.astro';
+import AppointmentForm from '../components/AppointmentForm.astro';
+import { clinicData } from '../data/clinic';
+---
+
+<BaseLayout
+  title="Contact & Location | Dr. Harshitha Jain, Basavanagudi, Bengaluru"
+  description="Visit Dr. Harshitha Jain at Meridian Medical Centre, Armugam Circle, Basavanagudi, Bengaluru. View clinic location, hours, Google Maps directions, and request an appointment."
+>
+  <section class="page-hero">
+    <div class="container text-center">
+      <span class="section-eyebrow">Clinic Details</span>
+      <h1 class="page-title">Contact & Location</h1>
+      <p class="lead" style="max-width: 720px; margin: var(--space-3) auto 0;">
+        Reach our clinic team at Meridian Medical Centre in Basavanagudi, Bengaluru. In-person and online video appointments available.
+      </p>
+    </div>
+  </section>
+
+  <TrustStrip />
+
+  <section class="section">
+    <div class="container">
+      <div class="contact-grid">
+        <!-- Clinic Details Column -->
+        <div class="contact-info-col">
+          <div class="card clinic-card-main">
+            <span class="badge badge-sage">Consultation Clinic</span>
+            <h2>Meridian Medical Centre</h2>
+            <p class="doctor-sub">Dr. Harshitha Jain, MBBS (Gold Medalist)</p>
+
+            <div class="detail-group">
+              <div class="detail-icon">📍</div>
+              <div>
+                <strong>Physical Address:</strong>
+                <p>
+                  First Floor, Meridian Medical Centre,<br />
+                  3/4, Armugam Circle,<br />
+                  <span class="landmark-callout">Above Shah Medicals</span>,<br />
+                  Basavanagudi, Bengaluru, Karnataka 560004
+                </p>
+                <p class="plus-code-box">
+                  Plus Code: <code>{clinicData.plusCode}</code>
+                </p>
+              </div>
+            </div>
+
+            <!-- Consultation Hours Schedule -->
+            <div class="detail-group">
+              <div class="detail-icon">⏰</div>
+              <div style="width: 100%;">
+                <strong>Consultation Hours:</strong>
+                <p class="hours-verified">Mon – Fri: 5:30 PM – 8:00 PM | Sat: 10:00 AM – 2:00 PM</p>
+
+                <div class="schedule-table-wrapper">
+                  <table class="schedule-table">
+                    <tbody>
+                      {clinicData.defaultSchedule.map((item) => (
+                        <tr>
+                          <td class="day-col"><strong>{item.day}</strong></td>
+                          <td class="hours-col">{item.hours}</td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+
+                <p class="text-xs text-muted" style="margin-top: 6px;">
+                  *Consultations are strictly by prior appointment to guarantee unhurried, focused patient care.
+                </p>
+              </div>
+            </div>
+
+            <!-- Direct Contact Modes -->
+            <div class="detail-group">
+              <div class="detail-icon">📞</div>
+              <div>
+                <strong>Phone & WhatsApp:</strong>
+                <p>
+                  <a href={`tel:${clinicData.phone.raw}`} class="contact-link">
+                    {clinicData.phone.display}
+                  </a>
+                </p>
+                <p class="text-xs text-muted">Direct calling & WhatsApp consultation enquiries.</p>
+              </div>
+            </div>
+
+            <div class="detail-group">
+              <div class="detail-icon">💬</div>
+              <div>
+                <strong>WhatsApp Messaging:</strong>
+                <p>
+                  <a 
+                    href={`https://wa.me/${clinicData.whatsapp.raw}?text=${encodeURIComponent(clinicData.whatsapp.message)}`}
+                    target="_blank" 
+                    rel="noopener noreferrer" 
+                    class="btn btn-whatsapp btn-sm"
+                    style="margin-top: 4px;"
+                  >
+                    Chat on WhatsApp &rarr;
+                  </a>
+                </p>
+              </div>
+            </div>
+
+            <div class="detail-group">
+              <div class="detail-icon">🌐</div>
+              <div>
+                <strong>Social & Professional Profiles:</strong>
+                <div class="social-pills" style="display: flex; gap: 8px; margin-top: 6px; flex-wrap: wrap;">
+                  <a href={clinicData.socials.instagram} target="_blank" rel="noopener noreferrer" class="btn btn-secondary btn-sm">
+                    Instagram (@doctorharshitha)
+                  </a>
+                  <a href={clinicData.socials.linkedin} target="_blank" rel="noopener noreferrer" class="btn btn-secondary btn-sm">
+                    LinkedIn
+                  </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="detail-group">
+              <div class="detail-icon">✉️</div>
+              <div>
+                <strong>Clinic Email:</strong>
+                <p>
+                  <a href={`mailto:${clinicData.email.display}`} class="contact-link">
+                    {clinicData.email.display}
+                  </a>
+                </p>
+              </div>
+            </div>
+
+            <!-- Landmark and Access Tips -->
+            <div class="landmark-tip-box">
+              <strong>Locality & Landmark Tips:</strong>
+              <p>Located right at Armugam Circle in Basavanagudi. Look for <em>Shah Medicals</em> on the ground floor; take the stairs or elevator to the <strong>First Floor</strong>.</p>
+            </div>
+
+            <div class="map-direct-action">
+              <a 
+                href={clinicData.googleMapsShareUrl} 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                class="btn btn-primary"
+                style="width: 100%;"
+              >
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+                  <polygon points="3 11 22 2 13 21 11 13 3 11"></polygon>
+                </svg>
+                <span>Open in Google Maps / Get Directions</span>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Appointment Form Column -->
+        <div class="contact-form-col" id="book">
+          <AppointmentForm />
+        </div>
+      </div>
+
+      <!-- Google Maps Embed Section -->
+      <div class="map-embed-section card" style="margin-top: var(--space-8); padding: var(--space-4);">
+        <div class="map-header" style="padding: var(--space-3) var(--space-2);">
+          <h3>Find Us on Google Maps</h3>
+          <p class="text-sm">Meridian Medical Centre, Armugam Circle, Basavanagudi, Bengaluru</p>
+        </div>
+        <iframe 
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3888.3503259976527!2d77.57529787593683!3d12.93991818737227!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bae158b0f808cb3%3A0x6b77209930f7823e!2sMeridian%20Medical%20Centre!5e0!3m2!1sen!2sin!4v1700000000000!5m2!1sen!2sin" 
+          width="100%" 
+          height="450" 
+          style="border:0; border-radius: var(--radius-md);" 
+          allowfullscreen="" 
+          loading="lazy" 
+          referrerpolicy="no-referrer-when-downgrade"
+          title="Meridian Medical Centre Basavanagudi Google Map"
+        ></iframe>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .page-hero {
+    background: radial-gradient(circle at 50% 50%, rgba(220, 238, 228, 0.4), transparent 60%);
+    padding: var(--space-8) 0 var(--space-7);
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .page-title {
+    margin-top: var(--space-2);
+  }
+
+  .contact-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-8);
+    align-items: flex-start;
+  }
+
+  @media (min-width: 1024px) {
+    .contact-grid {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+
+  .clinic-card-main {
+    background: #ffffff;
+    padding: var(--space-6);
+  }
+
+  @media (min-width: 768px) {
+    .clinic-card-main {
+      padding: var(--space-7);
+    }
+  }
+
+  .clinic-card-main h2 {
+    margin-top: var(--space-2);
+    font-size: 1.6rem;
+  }
+
+  .doctor-sub {
+    color: var(--color-brand-sage-dark);
+    font-weight: 600;
+    margin-bottom: var(--space-5);
+  }
+
+  .detail-group {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--space-4);
+    margin-bottom: var(--space-5);
+    padding-bottom: var(--space-5);
+    border-bottom: 1px solid rgba(152, 185, 168, 0.2);
+  }
+
+  .detail-icon {
+    font-size: 1.3rem;
+    flex-shrink: 0;
+  }
+
+  .landmark-callout {
+    color: #b45309;
+    font-weight: 600;
+  }
+
+  .plus-code-box {
+    margin-top: 4px;
+    font-size: 0.85rem;
+  }
+
+  .plus-code-box code {
+    background: var(--color-sand);
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-weight: 600;
+  }
+
+  .hours-verified {
+    color: var(--color-brand-sage-dark);
+    font-weight: 600;
+    margin-top: 2px;
+  }
+
+  .schedule-table-wrapper {
+    margin-top: 8px;
+    background: var(--color-sand);
+    border-radius: var(--radius-sm);
+    padding: 6px 10px;
+  }
+
+  .schedule-table {
+    width: 100%;
+    font-size: 0.825rem;
+    border-collapse: collapse;
+  }
+
+  .schedule-table td {
+    padding: 4px 6px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.04);
+  }
+
+  .day-col {
+    width: 100px;
+    color: var(--color-charcoal);
+  }
+
+  .hours-col {
+    color: var(--color-charcoal-muted);
+  }
+
+  .landmark-tip-box {
+    background: var(--color-sand);
+    border-left: 3px solid var(--color-brand-sage);
+    padding: var(--space-3) var(--space-4);
+    border-radius: var(--radius-xs);
+    font-size: 0.85rem;
+    margin-bottom: var(--space-5);
+  }
+
+  .map-direct-action {
+    margin-top: var(--space-4);
+  }
+</style>

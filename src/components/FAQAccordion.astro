@@ -1,0 +1,101 @@
+---
+import type { FAQItem } from '../data/faqs';
+
+export interface Props {
+  items: FAQItem[];
+  defaultOpenIndex?: number;
+}
+
+const { items, defaultOpenIndex = 0 } = Astro.props;
+---
+
+<div class="faq-accordion-group">
+  {items.map((item, index) => (
+    <details class="faq-item" open={index === defaultOpenIndex}>
+      <summary class="faq-summary">
+        <span class="faq-question">{item.question}</span>
+        <span class="faq-icon" aria-hidden="true">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="6 9 12 15 18 9"></polyline>
+          </svg>
+        </span>
+      </summary>
+      <div class="faq-content">
+        <p>{item.answer}</p>
+      </div>
+    </details>
+  ))}
+</div>
+
+<style>
+  .faq-accordion-group {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+  }
+
+  .faq-item {
+    background: #ffffff;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    transition: all var(--transition-fast);
+  }
+
+  .faq-item[open] {
+    border-color: var(--color-brand-sage);
+    box-shadow: var(--shadow-sm);
+  }
+
+  .faq-summary {
+    padding: var(--space-4) var(--space-5);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-4);
+    cursor: pointer;
+    list-style: none;
+    user-select: none;
+    font-family: var(--font-sans);
+    font-weight: 600;
+    font-size: 1.05rem;
+    color: var(--color-charcoal);
+  }
+
+  .faq-summary::-webkit-details-marker {
+    display: none;
+  }
+
+  .faq-question {
+    flex: 1;
+    text-align: left;
+  }
+
+  .faq-icon {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background: var(--color-brand-sage-light);
+    color: var(--color-brand-sage-dark);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform var(--transition-normal);
+    flex-shrink: 0;
+  }
+
+  .faq-item[open] .faq-icon {
+    transform: rotate(180deg);
+    background: var(--color-brand-sage);
+    color: #ffffff;
+  }
+
+  .faq-content {
+    padding: 0 var(--space-5) var(--space-5);
+    color: var(--color-charcoal-muted);
+    font-size: 0.98rem;
+    line-height: 1.7;
+    border-top: 1px solid rgba(152, 185, 168, 0.15);
+    padding-top: var(--space-3);
+  }
+</style>

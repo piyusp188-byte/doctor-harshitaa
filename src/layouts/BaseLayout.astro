@@ -1,0 +1,58 @@
+---
+import '../styles/global.css';
+import SEOHead from '../components/SEOHead.astro';
+import NavBar from '../components/NavBar.astro';
+import Footer from '../components/Footer.astro';
+import MobileBar from '../components/MobileBar.astro';
+
+export interface Props {
+  title?: string;
+  description?: string;
+  canonicalUrl?: string;
+  ogImage?: string;
+  schemaType?: "Physician" | "FAQPage" | "MedicalWebPage" | "WebPage";
+  faqItems?: { question: string; answer: string }[];
+}
+
+const {
+  title,
+  description,
+  canonicalUrl,
+  ogImage,
+  schemaType,
+  faqItems
+} = Astro.props;
+---
+
+<!DOCTYPE html>
+<html lang="en-IN">
+  <head>
+    <meta charset="UTF-8" />
+    <SEOHead 
+      title={title}
+      description={description}
+      canonicalUrl={canonicalUrl}
+      ogImage={ogImage}
+      schemaType={schemaType}
+      faqItems={faqItems}
+    />
+  </head>
+  <body>
+    <!-- Accessibility Skip Link -->
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+
+    <!-- Top Navigation Bar -->
+    <NavBar />
+
+    <!-- Main Content Slot -->
+    <main id="main-content">
+      <slot />
+    </main>
+
+    <!-- Site Footer -->
+    <Footer />
+
+    <!-- Mobile Sticky Contact Bar (Visible on mobile only) -->
+    <MobileBar />
+  </body>
+</html>

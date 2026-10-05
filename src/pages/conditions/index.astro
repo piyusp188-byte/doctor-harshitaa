@@ -1,0 +1,232 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import TrustStrip from '../../components/TrustStrip.astro';
+import { conditionsData } from '../../data/conditions';
+---
+
+<BaseLayout
+  title="Conditions & Focus Areas | Dr. Harshitha Jain, Bengaluru"
+  description="Comprehensive functional medicine care for thyroid, hormonal imbalances, chronic constipation, gut dysbiosis, sinus allergies, and nervous system stress in Bengaluru."
+>
+  <section class="page-hero">
+    <div class="container text-center">
+      <span class="section-eyebrow">Clinical Specialties</span>
+      <h1 class="page-title">Conditions & Focus Areas</h1>
+      <p class="lead" style="max-width: 720px; margin: var(--space-3) auto 0;">
+        Chronic symptoms are signals, not life sentences. Discover how Dr. Harshitha investigates the root causes behind common chronic conditions.
+      </p>
+    </div>
+  </section>
+
+  <TrustStrip />
+
+  <section class="section">
+    <div class="container">
+      <div class="conditions-full-list">
+        {conditionsData.map((condition, index) => (
+          <div class="card condition-full-card" id={condition.slug}>
+            <div class="condition-top-row">
+              <div class="condition-title-group">
+                <span class="badge badge-teal">{condition.badge}</span>
+                <h2>{condition.title}</h2>
+              </div>
+              <div class="condition-large-icon" set:html={condition.iconSvg}></div>
+            </div>
+
+            <p class="condition-overview-text">{condition.overview}</p>
+
+            <div class="condition-details-grid">
+              <div class="symptoms-box">
+                <h4>Common Signs & Symptoms</h4>
+                <ul class="symptoms-list">
+                  {condition.commonSymptoms.map((symptom) => (
+                    <li>
+                      <span class="check-mark">•</span>
+                      <span>{symptom}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+
+              <div class="approach-box">
+                <h4>Root-Cause Functional Approach</h4>
+                <ul class="approach-list">
+                  {condition.rootCauseApproach.map((item) => (
+                    <li>
+                      <span class="check-mark">✓</span>
+                      <span>{item}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+
+            <div class="condition-card-footer">
+              <div class="expectations-text">
+                <strong>What to Expect:</strong> {condition.whatToExpect}
+              </div>
+              <a href={`/conditions/${condition.slug}`} class="btn btn-primary">
+                <span>View Full {condition.title} Guide</span> &rarr;
+              </a>
+            </div>
+          </div>
+        ))}
+      </div>
+
+      <div class="doctor-note-box card text-center">
+        <p>
+          Focus areas reflect core integrative specialties practiced at Dr. Harshitha Jain's clinic. Therapeutic roadmaps are customized to each patient's individual biochemistry and lifestyle history.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="section text-center" style="background: #ffffff; border-top: 1px solid var(--color-border);">
+    <div class="container">
+      <h2>Have a Concern Not Listed Above?</h2>
+      <p class="lead" style="max-width: 600px; margin: var(--space-3) auto var(--space-6);">
+        Many complex conditions intersect multiple bodily systems. Reach out to discuss your specific case.
+      </p>
+      <a href="/contact#book" class="btn btn-primary btn-lg">Enquire About Your Condition &rarr;</a>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .page-hero {
+    background: radial-gradient(circle at 50% 50%, rgba(220, 238, 228, 0.4), transparent 60%);
+    padding: var(--space-8) 0 var(--space-7);
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .page-title {
+    margin-top: var(--space-2);
+  }
+
+  .conditions-full-list {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-7);
+  }
+
+  .condition-full-card {
+    background: #ffffff;
+    border-radius: var(--radius-xl);
+    padding: var(--space-6);
+    border: 1px solid var(--color-border);
+    box-shadow: var(--shadow-sm);
+  }
+
+  @media (min-width: 768px) {
+    .condition-full-card {
+      padding: var(--space-7);
+    }
+  }
+
+  .condition-top-row {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: var(--space-4);
+    margin-bottom: var(--space-4);
+  }
+
+  .condition-title-group h2 {
+    margin-top: var(--space-2);
+    font-size: clamp(1.4rem, 2vw, 1.9rem);
+    color: var(--color-brand-sage-dark);
+  }
+
+  .condition-large-icon {
+    width: 52px;
+    height: 52px;
+    border-radius: var(--radius-md);
+    background: var(--color-brand-sage-light);
+    color: var(--color-brand-sage-dark);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .condition-overview-text {
+    font-size: 1.05rem;
+    line-height: 1.7;
+    margin-bottom: var(--space-6);
+  }
+
+  .condition-details-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-6);
+    margin-bottom: var(--space-6);
+  }
+
+  @media (min-width: 768px) {
+    .condition-details-grid {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+
+  .symptoms-box, .approach-box {
+    background: var(--color-sand);
+    border: 1px solid var(--color-border-subtle);
+    border-radius: var(--radius-md);
+    padding: var(--space-5);
+  }
+
+  .symptoms-box h4, .approach-box h4 {
+    margin-bottom: var(--space-3);
+    font-size: 1.05rem;
+    color: var(--color-charcoal);
+  }
+
+  .symptoms-list, .approach-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    font-size: 0.92rem;
+  }
+
+  .symptoms-list li, .approach-list li {
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+  }
+
+  .check-mark {
+    color: var(--color-brand-sage);
+    font-weight: bold;
+    flex-shrink: 0;
+  }
+
+  .condition-card-footer {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+    align-items: flex-start;
+    justify-content: space-between;
+    border-top: 1px solid rgba(152, 185, 168, 0.2);
+    padding-top: var(--space-5);
+  }
+
+  @media (min-width: 768px) {
+    .condition-card-footer {
+      flex-direction: row;
+      align-items: center;
+    }
+  }
+
+  .expectations-text {
+    font-size: 0.92rem;
+    color: var(--color-charcoal-muted);
+    max-width: 680px;
+  }
+
+  .doctor-note-box {
+    margin-top: var(--space-7);
+    padding: var(--space-4);
+  }
+</style>
