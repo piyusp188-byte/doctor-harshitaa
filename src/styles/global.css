@@ -60,13 +60,19 @@
   --container-max: 1200px;
   --container-padding: 20px;
   --header-height: 80px;
-  --mobile-bar-height: 64px;
+  --mobile-bar-height: calc(64px + env(safe-area-inset-bottom, 0px));
 
   /* Transitions */
   --ease-spring: cubic-bezier(0.16, 1, 0.3, 1);
   --transition-fast: 150ms var(--ease-spring);
   --transition-normal: 250ms var(--ease-spring);
   --transition-slow: 400ms var(--ease-spring);
+}
+
+@media (max-width: 374px) {
+  :root {
+    --container-padding: 16px;
+  }
 }
 
 /* Box sizing and clean reset */
@@ -91,11 +97,16 @@ body {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-  overflow-x: hidden;
   background: radial-gradient(circle at 10% 10%, rgba(220, 238, 228, 0.55), transparent 45%),
               radial-gradient(circle at 90% 40%, rgba(243, 238, 228, 0.7), transparent 50%),
               var(--color-sand);
   background-attachment: fixed;
+}
+
+@media (max-width: 1023px) {
+  main {
+    padding-bottom: var(--mobile-bar-height);
+  }
 }
 
 /* Typography Hierarchy */
@@ -234,7 +245,15 @@ img {
   border: 1px solid transparent;
   transition: all var(--transition-normal);
   line-height: 1.4;
-  white-space: nowrap;
+  white-space: normal;
+  text-align: center;
+  max-width: 100%;
+}
+
+@media (min-width: 768px) {
+  .btn {
+    white-space: nowrap;
+  }
 }
 
 .btn:focus-visible {
@@ -300,6 +319,13 @@ img {
 .btn-lg {
   padding: 16px 32px;
   font-size: 1.05rem;
+}
+
+@media (max-width: 480px) {
+  .btn-lg {
+    padding: 12px 20px;
+    font-size: 0.95rem;
+  }
 }
 
 /* Glassmorphism Cards */
@@ -385,43 +411,52 @@ img {
 /* Grid Layouts */
 .grid-2 {
   display: grid;
-  grid-template-columns: 1fr;
+  grid-template-columns: minmax(0, 1fr);
   gap: var(--space-6);
+  min-width: 0;
 }
 
 .grid-3 {
   display: grid;
-  grid-template-columns: 1fr;
+  grid-template-columns: minmax(0, 1fr);
   gap: var(--space-5);
+  min-width: 0;
 }
 
 .grid-4 {
   display: grid;
-  grid-template-columns: 1fr;
+  grid-template-columns: minmax(0, 1fr);
   gap: var(--space-4);
+  min-width: 0;
+}
+
+.grid-2 > *,
+.grid-3 > *,
+.grid-4 > * {
+  min-width: 0;
 }
 
 @media (min-width: 640px) {
   .grid-2 {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
 
 @media (min-width: 768px) {
   .grid-3 {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
   .grid-4 {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
 
 @media (min-width: 1024px) {
   .grid-3 {
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(3, minmax(0, 1fr));
   }
   .grid-4 {
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(4, minmax(0, 1fr));
   }
 }
 
@@ -471,6 +506,9 @@ img {
 .form-select,
 .form-textarea {
   width: 100%;
+  max-width: 100%;
+  min-width: 0;
+  box-sizing: border-box;
   padding: 12px 16px;
   border-radius: var(--radius-sm);
   border: 1px solid var(--color-border);
@@ -479,6 +517,11 @@ img {
   font-family: var(--font-sans);
   font-size: 0.98rem;
   transition: all var(--transition-fast);
+}
+
+.form-select {
+  text-overflow: ellipsis;
+  overflow: hidden;
 }
 
 .form-input:focus,

@@ -28,14 +28,18 @@ import { clinicData } from '../data/clinic';
       <span>WhatsApp</span>
     </a>
 
-    <a href="/contact#book" class="mobile-bar-btn mobile-book-btn">
+    <a 
+      href="/contact#book" 
+      class="mobile-bar-btn mobile-book-btn"
+      aria-label="Request a clinic visit"
+    >
       <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
         <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
         <line x1="16" y1="2" x2="16" y2="6"></line>
         <line x1="8" y1="2" x2="8" y2="6"></line>
         <line x1="3" y1="10" x2="21" y2="10"></line>
       </svg>
-      <span>Request Visit</span>
+      <span>Book</span>
     </a>
   </div>
 </div>
@@ -53,6 +57,7 @@ import { clinicData } from '../data/clinic';
     border-top: 1px solid var(--color-border);
     box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.08);
     padding: 8px 12px;
+    padding-bottom: calc(8px + env(safe-area-inset-bottom, 0px));
   }
 
   @media (min-width: 1024px) {
@@ -63,27 +68,36 @@ import { clinicData } from '../data/clinic';
 
   .mobile-sticky-container {
     display: flex;
-    align-items: center;
+    align-items: stretch;
     justify-content: space-between;
-    gap: 8px;
+    gap: 6px;
     max-width: 500px;
     margin: 0 auto;
   }
 
   .mobile-bar-btn {
     flex: 1;
+    min-width: 0;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     gap: 3px;
-    padding: 7px 6px;
+    padding: 7px 4px;
     border-radius: var(--radius-sm);
-    font-size: 0.75rem;
+    font-size: 0.72rem;
     font-weight: 600;
     text-decoration: none;
     line-height: 1.1;
     transition: all var(--transition-fast);
+  }
+
+  @media (max-width: 359px) {
+    .mobile-bar-btn {
+      padding: 6px 3px;
+      gap: 2px;
+      font-size: 0.65rem;
+    }
   }
 
   .mobile-call-btn {

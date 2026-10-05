@@ -170,7 +170,15 @@ import { clinicData } from '../data/clinic';
     border-radius: var(--radius-xl);
     border: 1px solid var(--color-border);
     box-shadow: var(--shadow-md);
-    padding: var(--space-6);
+    padding: var(--space-4);
+    min-width: 0;
+    max-width: 100%;
+  }
+
+  @media (min-width: 640px) {
+    .appointment-form-card {
+      padding: var(--space-6);
+    }
   }
 
   @media (min-width: 768px) {
@@ -198,10 +206,13 @@ import { clinicData } from '../data/clinic';
     display: flex;
     flex-direction: column;
     gap: var(--space-1);
+    min-width: 0;
+    max-width: 100%;
   }
 
   .form-row {
     margin-bottom: var(--space-2);
+    min-width: 0;
   }
 
   .text-subtle {
@@ -217,14 +228,29 @@ import { clinicData } from '../data/clinic';
     border: 1px solid var(--color-border-subtle);
     margin-top: var(--space-2);
     margin-bottom: var(--space-4);
+    min-width: 0;
   }
 
   .form-action {
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
+    align-items: stretch;
     gap: var(--space-3);
     margin-top: var(--space-2);
+    width: 100%;
+  }
+
+  .form-action .btn {
+    width: 100%;
+  }
+
+  @media (min-width: 640px) {
+    .form-action {
+      align-items: flex-start;
+    }
+    .form-action .btn {
+      width: auto;
+    }
   }
 
   .privacy-note {

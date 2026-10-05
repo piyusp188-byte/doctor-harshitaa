@@ -195,20 +195,33 @@ import { clinicData } from '../data/clinic';
 
   .contact-grid {
     display: grid;
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0, 1fr);
     gap: var(--space-8);
     align-items: flex-start;
+    min-width: 0;
   }
 
   @media (min-width: 1024px) {
     .contact-grid {
-      grid-template-columns: 1fr 1fr;
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
     }
+  }
+
+  .contact-info-col,
+  .contact-form-col {
+    min-width: 0;
   }
 
   .clinic-card-main {
     background: #ffffff;
-    padding: var(--space-6);
+    padding: var(--space-4);
+    min-width: 0;
+  }
+
+  @media (min-width: 640px) {
+    .clinic-card-main {
+      padding: var(--space-6);
+    }
   }
 
   @media (min-width: 768px) {
@@ -235,6 +248,12 @@ import { clinicData } from '../data/clinic';
     margin-bottom: var(--space-5);
     padding-bottom: var(--space-5);
     border-bottom: 1px solid rgba(152, 185, 168, 0.2);
+    min-width: 0;
+  }
+
+  .detail-group > div:last-child {
+    min-width: 0;
+    word-break: break-word;
   }
 
   .detail-icon {
@@ -270,6 +289,7 @@ import { clinicData } from '../data/clinic';
     background: var(--color-sand);
     border-radius: var(--radius-sm);
     padding: 6px 10px;
+    overflow-x: auto;
   }
 
   .schedule-table {

@@ -785,8 +785,9 @@ const homeFaqs = faqList.slice(0, 4);
   /* Appointment Section */
   .appointment-layout {
     display: grid;
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0, 1fr);
     gap: var(--space-7);
+    min-width: 0;
   }
 
   @media (min-width: 1024px) {
@@ -796,11 +797,17 @@ const homeFaqs = faqList.slice(0, 4);
     }
   }
 
+  .appointment-intro,
+  .appointment-form-wrapper {
+    min-width: 0;
+  }
+
   .clinic-contact-cards {
     margin-top: var(--space-6);
     display: flex;
     flex-direction: column;
     gap: var(--space-4);
+    min-width: 0;
   }
 
   .clinic-info-card {
@@ -811,15 +818,22 @@ const homeFaqs = faqList.slice(0, 4);
     border: 1px solid var(--color-border);
     border-radius: var(--radius-md);
     padding: var(--space-4);
+    min-width: 0;
+  }
+
+  .clinic-info-card > div:last-child {
+    min-width: 0;
   }
 
   .clinic-info-card .info-icon {
     font-size: 1.3rem;
+    flex-shrink: 0;
   }
 
   .clinic-info-card p {
     font-size: 0.875rem;
     margin-top: 2px;
+    word-break: break-word;
   }
 
   /* Location Section */
